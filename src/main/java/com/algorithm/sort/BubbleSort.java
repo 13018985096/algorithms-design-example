@@ -3,6 +3,8 @@ package com.algorithm.sort;
 /**
  * 冒泡排序 时间复杂度为O(n*n) 空间复杂度为O(1) 是稳定的排序算法
  *
+ * 1,4,3,2,8,3,6  经过排序之后，前面3的位置仍然在后面3的前面 1,2,3,3,4,6,8
+ *
  * @author tanjiang
  */
 public class BubbleSort {
