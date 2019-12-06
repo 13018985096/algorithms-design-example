@@ -1,8 +1,6 @@
 package com.structures.linear.stack;
 
 
-import sun.tools.jstat.Jstat;
-
 import java.util.Stack;
 
 /**
@@ -17,7 +15,7 @@ public class ValidParenthesis {
     public static void main(String[] args) {
 //        System.out.println(isValid0("(()))"));
 
-        System.out.println(longestValidParentheses("())(())"));
+        System.out.println(longestValidParentheses1("()(())"));
     }
 
     /**
@@ -81,11 +79,12 @@ public class ValidParenthesis {
 
     /**
      * 找到字符串中最长有效括号   "()(())()"  "(())" 返回4
+     * 时间空间复杂度都为O(n)
      *
      * @param s 目标串
      * @return 最长后效括号长度
      */
-    private static int longestValidParentheses(String s) {
+    private static int longestValidParentheses0(String s) {
 
         int max = 0;
 
@@ -110,4 +109,59 @@ public class ValidParenthesis {
 
         return max;
     }
+
+
+    /**
+     * 找到字符串中最长有效括号   "()(())()"  "(())" 返回4
+     * 时间复杂度都为O(n),空间复杂度为O(1)
+     *
+     * @param s 目标串
+     * @return 最长后效括号长度
+     */
+    private static int longestValidParentheses1(String s) {
+
+        //左括号的个数
+        int left = 0;
+        //右括号的个数
+        int right = 0;
+
+        int max = 0;
+
+        //从左开始遍历
+        for (int i = 0; i < s.length(); i++) {
+            if (s.charAt(i) == '(') {
+                left++;
+            } else {
+                right++;
+            }
+
+            //如果 left >= right，显然这个时候 right 个 ')' 都将一定能够得到匹配。所以当前的有效括号长度为 2 * right。然后更新 max。
+            if (left == right) {
+                max = Math.max(max, right * 2);
+            } else if (left < right) {
+                left = right = 0;
+            }
+        }
+
+        //从右开始遍历
+        left = right = 0;
+        for (int j = s.length() - 1; j > 0; j--) {
+            if (s.charAt(j) == '(') {
+                left++;
+            } else {
+                right++;
+            }
+
+            //如果 left <= right，显然这个时候 left 个 ')' 都将一定能够得到匹配。所以当前的有效括号长度为 2 * left。然后更新 max。
+            if (left == right) {
+                max = Math.max(max, left * 2);
+
+            } else if (left > right) {
+                left = right = 0;
+            }
+        }
+
+        return max;
+    }
+
 }
