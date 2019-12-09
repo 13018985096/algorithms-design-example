@@ -20,7 +20,7 @@ public class QuickSort {
     }
 
     /**
-     * 分区操作
+     * 分区排序操作
      *
      * @param a 数组
      * @param p 数组首下标
