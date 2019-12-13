@@ -7,7 +7,7 @@ package com.algorithm.sort;
  */
 public class InsertionSort {
 
-    public void insertionSort(int[] arr, int len) {
+    public static void insertionSort(int[] arr, int len) {
         if (len <= 1) {
             return;
         }
@@ -30,4 +30,15 @@ public class InsertionSort {
             arr[j + 1] = value;
         }
     }
+
+    public static void main(String[] args) {
+        int[] arr = {1,3,2,4,7,5};
+        InsertionSort insertionSort = new InsertionSort();
+        insertionSort.insertionSort(arr,arr.length);
+        for(int i =0 ;i <arr.length;i++){
+            System.out.println(arr[i]);
+        }
+    }
+
+
 }

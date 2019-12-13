@@ -6,6 +6,9 @@ import net.sf.cglib.proxy.MethodProxy;
 
 import java.lang.reflect.Method;
 
+/**
+ * @author tanjiang
+ */
 public class CglibProxy {
 
     public static void main(String[] args) {
@@ -13,7 +16,6 @@ public class CglibProxy {
         TargetDao targetDao = (TargetDao) cglibProxyFactory.getProxyInstance();
         System.out.println(targetDao.getClass());
         targetDao.connect();
-
     }
 
 }
@@ -27,7 +29,7 @@ public class CglibProxy {
  * cglib底层是通过一个小而快的字节码框架AMS,来转换字节码生成类
  */
 class CglibProxyFactory implements MethodInterceptor {
-    Object object;
+    private Object object;
 
     public CglibProxyFactory(Object object) {
         this.object = object;
